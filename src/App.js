@@ -4,7 +4,7 @@ import {useState, useEffect} from "react";
 import axios from "axios";
 import BelowTableSection from "./components/BelowTableSection";
 import Search from './components/Search';
-
+  
 function App() {
   const [data, setData] = useState([]);  //State variable created to keep track of Table data
   const [currentPage, setCurrentPage] = useState(1);    //Setting the currentpage value to 1

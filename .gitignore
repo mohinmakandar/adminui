@@ -22,5 +22,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Local Netlify folder
-.netlify.toml
+# Local Netlify folder and netlify.toml file
+.netlify
+/netlify.toml
