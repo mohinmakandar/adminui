@@ -1,0 +1,15 @@
+.BelowTableSection{
+    display: flex;
+    padding: 20px;
+    justify-content: center;
+  }
+  
+  .DeleteButton{
+    margin-right: 30px;
+    border: 1px solid black;
+    border-radius: 5px;
+  }
+
+  .DeleteButton:hover{
+    transform: scale(1.1);
+  }

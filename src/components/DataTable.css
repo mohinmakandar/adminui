@@ -1,0 +1,61 @@
+.DataTable{
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid gray;
+    border-radius: 2%;
+    display: flex;
+    justify-content: fit-content;
+}
+
+.Main{
+    display:flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+/*Aligning the table content to left*/
+table{
+    text-align: left; 
+    width:630px;
+}
+
+/*Adding a padding of 5px to every table cell/td*/
+td{
+    padding: 5px;
+}
+
+/*Removing the default border of the text input fields*/
+.DataTable input{
+    border:none;
+    background-color: white;        
+}
+
+
+/*When focusing on the input text fields removing the default border and outline*/
+.DataTable input:focus{                                        
+    border:0;                          
+    outline:none;
+}
+
+/*Setting the background color of edit, save, delete button to white*/
+ .EditRow, .EditRow button, .SelectedRow, .SelectedRow button{
+    background-color: #e0e0e0;
+ }
+
+ /*Changing the default input color and setting it to white, also removing borders for the input field*/
+ .SelectedRow input{
+    background-color: #e0e0e0;
+    border:0;
+    outline:none;
+ }
+
+ /*Changing the input field color and setting it to gray to show that the specific row is being edited, also setting border and outline for the input field*/
+ /*Applying the below style even when input is focused*/
+
+ .EditRow input, .EditRow input:focus{
+    border:1px solid gray;
+    outline-color: 1px solid black;
+    background-color: white;
+}
+

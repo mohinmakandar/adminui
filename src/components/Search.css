@@ -1,0 +1,16 @@
+.Search{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0.8rem;
+}
+
+.Search input{
+    width: 630px;
+    height: 1rem;
+    padding: 5px;
+    border: 1px solid gray;
+}
+
+.Search input:focus{
+    outline:none;
+}

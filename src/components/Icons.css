@@ -1,0 +1,18 @@
+
+/*Setting the parent div display to flex to ensure the icons appear horizontally in the table cell with space around them*/
+.Icons{
+    display: flex;
+    justify-content: space-around;     
+}
+
+ /*In order to hide the button enclosing the icons we blend its background with the default background.
+ /* We also remove default border and padding of button*/
+.ButtonIcon{
+    background-color: white;           
+    border: none;                         
+    padding: 0;
+}
+
+.ButtonIcon:hover{
+   transform: scale(1.3);
+}

@@ -1,0 +1,19 @@
+.Pagination{
+    display: flex;
+    justify-content: space-around;   
+}
+
+.PaginationButton{
+    display: flex;
+    justify-content: space-around;
+    margin-right: 10px;
+    background-color:#e0e0e0; 
+    border-radius: 1px;
+    padding-top: 3px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.PaginationButton:hover{
+    transform: scale(1.2);
+}
