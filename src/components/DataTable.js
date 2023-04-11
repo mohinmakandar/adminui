@@ -5,20 +5,17 @@ import Icons from "./Icons"; //Component imported to display save,delete and edi
 function DataTable(props){
 
     const columns=["Name","Email","Role","Actions"];
+   
 
     /*This below method makes the row data fields editable on Clicking edit icon/button */   
     const editRowData = (id)=>{ 
-  
-        //Settting the selectedRow class styles to the selected table row
-        let tr = document.getElementById(id);
-        tr.className="EditRow";
         
         addIdtoSelectedRows(id);
         //Enabling the textfields for edit by updating the boolean value that saves its previous state
         let updatedData = props.data.map((dataItem)=>{
             if(dataItem.id===id){
                 dataItem.isDisabled= !dataItem.isDisabled;
-                dataItem.isChecked= true;
+                dataItem.isChecked= dataItem.isChecked?true:false;
             }
             return dataItem;
         })
@@ -28,17 +25,13 @@ function DataTable(props){
   
     //The below method makes the textfields uneditable on clicking save icon
     const saveRowData = (id)=>{
-        
-        //Removing the selectedRow class styles for specific row with specified id
-        let tr = document.getElementById(id);
-        tr.className="";
 
         removeIdFromSelectedRows(id);
   
         let updatedData = props.data.map((dataItem)=>{
             if(dataItem.id===id){
                 dataItem.isDisabled= !dataItem.isDisabled;
-                dataItem.isChecked= false;
+                dataItem.isChecked= dataItem.isChecked?true:false;
             }
             return dataItem;
         })
@@ -59,11 +52,15 @@ function DataTable(props){
   
         props.updateData(updatedData);
     }
-
+    
+    
+    //Adds the id to arary that contains the ids of those dataItems whose checkbox is checked
     const addIdtoSelectedRows = (id)=>{
         props.selectedRowsIds.push(id);
+        console.log(props.selectedRowsIds);
     }
 
+    //Removes the id from arary that contains the ids of those dataItems whose checkbox is checked
     const removeIdFromSelectedRows = (id)=>{
         
        props.selectedRowsIds.splice(props.selectedRowsIds.indexOf(id),1);
@@ -72,12 +69,6 @@ function DataTable(props){
 
     //The below method allows you to update data in the textfields depending on which textfield you enter data into
     const handleChange = (e,id,val)=>{
-
-        let tr = document.getElementById(id);
-  
-        if(tr.className!=="EditRow"){
-            return;
-        }
   
         let updatedData = props.data.map((dataItem)=>{
             if(dataItem.id===id){
@@ -98,19 +89,15 @@ function DataTable(props){
         props.updateData(updatedData);
     }
   
-    //The following method toggles the checkbox value and also adds respective styles based on checkbox being selected or unselected
+    //The following method toggles the checkbox value by updating the field that represents its checked value
     const handleCheckBox = (id,isChecked)=>{
        
-        //If isChecked value is false, then set the row class in which the checkbox is present to selectedRow, which changes the styles
         if(isChecked===false){  
-               let tr = document.getElementById(id);
-               tr.className="SelectedRow";
+            
                addIdtoSelectedRows(id);
          }
-         else{  //If checkbox value is true , then remove the row class from selection by setting the row classname to empty string 
-  
-             let tr = document.getElementById(id);
-             tr.className="";
+         else{  
+
              removeIdFromSelectedRows(id);
          }
          
@@ -124,8 +111,6 @@ function DataTable(props){
   
         // set the updated data array to state variable
         props.updateData(updatedData);
-
-        // console.log(props.selectedRowsIds);
   
     }
 
@@ -134,31 +119,42 @@ function DataTable(props){
         /*Emptying the array that holds Id of checkboxes that are checked*/
         props.updateSelectedRowsIds([]);
 
+        //Checks the current page checkboxes of all dataItems and adding ids of dataItems to be delted in a seperate array 
         if(e.target.checked===true){
             let updatedArray=[];
             props.currentData.forEach((dataItem)=>{
                 
                 updatedArray.push(dataItem.id);
                 dataItem.isChecked=true;
-                let tr = document.getElementById(dataItem.id);
-                tr.className="SelectedRow";
             })    
             props.updateSelectedRowsIds(updatedArray);
-            // console.log(updatedArray);
+            
         } 
         else{
-
+            //Unchecks the current page checkboxes of all dataItems and emptysthe array that holds the ids to be deleted 
             props.currentData.forEach((dataItem)=>{
                 dataItem.isChecked=false;
-                let tr = document.getElementById(dataItem.id);
-                tr.className="";
             });    
             
             props.updateSelectedRowsIds([]);
-            // console.log(props.selectedRowsIds);
         }
         
         
+    }
+
+    const getClassName=(isChecked,isDisabled)=>{
+        if(isChecked&&isDisabled===false){
+            return "SelectedRow EditRow"
+        }
+        else if(isChecked){
+            return "SelectedRow"
+        }
+        else if(isDisabled===false){
+            return "EditRow";
+        }
+        else{
+            return "";
+        }
     }
 
     return (
@@ -178,7 +174,10 @@ function DataTable(props){
                 <tbody>
                     {/*Maps the API response returned as an array of object and displays data*/}
                     {props.currentData.map((dataItem)=>(
-                    <tr id={dataItem.id} key={dataItem.id} >
+                        <tr id={dataItem.id} 
+                        key={dataItem.id} 
+                        className={getClassName(dataItem.isChecked,dataItem.isDisabled)}
+                    >
                         <td><input type="checkbox" checked={dataItem.isChecked} onChange={()=>{handleCheckBox(dataItem.id,dataItem.isChecked);}}/></td>
                         <td className="name"><input type="text" value={dataItem.name} onChange={(e)=>{handleChange(e,dataItem.id,dataItem.name);}} disabled={dataItem.isDisabled}/></td>
                         <td><input type="text" value={dataItem.email} onChange={(e)=>{handleChange(e,dataItem.id,dataItem.email);}} disabled={dataItem.isDisabled}/></td>

@@ -20,7 +20,7 @@ table{
     width:630px;
 }
 
-/*Adding a padding of 5px to every table cell/td*/
+/*Adding a padding of 5px to every table cell or td*/
 td{
     padding: 5px;
 }
@@ -39,7 +39,7 @@ td{
 }
 
 /*Setting the background color of edit, save, delete button to white*/
- .EditRow, .EditRow button, .SelectedRow, .SelectedRow button{
+.SelectedRow, .SelectedRow button{
     background-color: #e0e0e0;
  }
 
