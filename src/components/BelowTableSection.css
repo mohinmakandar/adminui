@@ -13,3 +13,17 @@
   .DeleteButton:hover{
     transform: scale(1.1);
   }
+
+  
+@media screen and (max-width:660px) {
+  .BelowTableSection{
+    flex-direction: column;
+    padding-top:10px;
+    align-items: center;
+  }
+
+  .DeleteButton{
+    margin-bottom: 1rem;
+    width: 100px;
+  }
+}

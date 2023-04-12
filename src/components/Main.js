@@ -102,7 +102,7 @@ function Main() {
   let currentData = updateCurrentData();
 
   return (
-    <div className="App">
+    <div className="Main">
       <h1 className='heading'>ADMIN UI</h1>
       <Search data={data} updateData={updateData} />
       <DataTable 

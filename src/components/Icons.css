@@ -16,3 +16,11 @@
 .ButtonIcon:hover{
    transform: scale(1.3);
 }
+
+@media screen and (max-width:660px) {
+    .Icons{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}

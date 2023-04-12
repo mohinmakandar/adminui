@@ -5,12 +5,25 @@
 }
 
 .Search input{
-    width: 630px;
+    width: 100%;
     height: 1rem;
     padding: 5px;
     border: 1px solid gray;
+    width: 550px;
 }
 
 .Search input:focus{
     outline:none;
+}
+
+@media screen and (max-width: 660px){
+    .Search input{
+        width: 430px;
+    }
+}
+
+@media screen and (max-width: 454px){
+    .Search input{
+        width: 330px;
+    }
 }

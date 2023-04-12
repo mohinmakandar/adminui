@@ -158,14 +158,13 @@ function DataTable(props){
     }
 
     return (
-    <div className="Main">
         <div className="DataTable">
         {
             props.data.length>0?
             <table>
                 <thead>
                     <tr>
-                        <th><input id="checkbox" type="checkbox" onChange={(e)=>{selectAllCheckBox(e);}} /></th>
+                        <th className="checkboxClass" ><input id="checkbox" type="checkbox" onChange={(e)=>{selectAllCheckBox(e);}} /></th>
                         {columns.map((columnItem,index)=>(     
                             <th key={index}>{columnItem}</th>
                         ))}
@@ -178,10 +177,10 @@ function DataTable(props){
                         key={dataItem.id} 
                         className={getClassName(dataItem.isChecked,dataItem.isDisabled)}
                     >
-                        <td><input type="checkbox" checked={dataItem.isChecked} onChange={()=>{handleCheckBox(dataItem.id,dataItem.isChecked);}}/></td>
-                        <td className="name"><input type="text" value={dataItem.name} onChange={(e)=>{handleChange(e,dataItem.id,dataItem.name);}} disabled={dataItem.isDisabled}/></td>
-                        <td><input type="text" value={dataItem.email} onChange={(e)=>{handleChange(e,dataItem.id,dataItem.email);}} disabled={dataItem.isDisabled}/></td>
-                        <td className="role"><input type="text" value={dataItem.role} onChange={(e)=>{handleChange(e,dataItem.id,dataItem.role);}} disabled={dataItem.isDisabled}/></td>
+                        <td className="checkboxClass" ><input type="checkbox" checked={dataItem.isChecked} onChange={()=>{handleCheckBox(dataItem.id,dataItem.isChecked);}}/></td>
+                        <td className="name">{dataItem.isDisabled?dataItem.name: <input type="text" value={dataItem.name} onChange={(e)=>{handleChange(e,dataItem.id,dataItem.name);}} disabled={dataItem.isDisabled}/>}</td>
+                        <td className="email">{dataItem.isDisabled?dataItem.email:<input type="text" value={dataItem.email} onChange={(e)=>{handleChange(e,dataItem.id,dataItem.email);}} disabled={dataItem.isDisabled}/>}</td>
+                        <td className="role">{dataItem.isDisabled?dataItem.role:<input type="text" value={dataItem.role} onChange={(e)=>{handleChange(e,dataItem.id,dataItem.role);}} disabled={dataItem.isDisabled}/>}</td>
                         <td><Icons id={dataItem.id} isDisabled={dataItem.isDisabled} saveRowData={saveRowData} deleteRowData={deleteRowData} editRowData={editRowData} /></td> 
                     </tr>
                 ))}
@@ -192,8 +191,7 @@ function DataTable(props){
             <h1>No Records Left!</h1>
         }
            
-        </div>    
-    </div>
+        </div>
         
     );
 }
